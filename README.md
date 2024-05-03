@@ -46,7 +46,7 @@ You'll be asked to pick the alias for which you wish to generate the token. Your
 
 ## Additional Tips
 
-If you have a bulk list of aliases in JSON format, they can be added via the provided Python script. Here's an example of how the JSON format should appear:
+If you have a bulk list of aliases in JSON format, they can be added to aliases.json. Here's an example of how the JSON format should appear:
 
 ```json
 [
