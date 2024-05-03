@@ -1,3 +1,4 @@
+import os
 import json
 from termcolor import colored
 
@@ -19,10 +20,11 @@ def get_alias_data_from_user():
     }
 
 def add_alias_to_file(alias_data):
-    try:
+    if os.path.isfile('aliases.json'):
         with open('aliases.json', 'r') as f:
-            aliases = json.load(f)
-    except FileNotFoundError:
+            content = f.read()
+            aliases = json.loads(content) if content else []
+    else:
         aliases = []
 
     aliases.append(alias_data)
