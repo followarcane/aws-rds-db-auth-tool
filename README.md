@@ -49,20 +49,26 @@ You'll be asked to pick the alias for which you wish to generate the token. Your
 If you have a bulk list of aliases in JSON format, they can be added via the provided Python script. Here's an example of how the JSON format should appear:
 
 ```json
-{
-  "aliases": [
-    {
-      "alias": 'example-alias',
-      "rds_resource_id": 'example-resource-id',
-      "aws_region": 'example-region'
-    },
-    {
-      "alias": 'example-alias-2',
-      "rds_resource_id": 'example-resource-id-2',
-      "aws_region": 'example-region-2'
+[
+  {
+    "name": "alias1",
+    "command": {
+      "hostname": "127.0.0.1",
+      "port": 8080,
+      "region": "us-west-2",
+      "profile": "profile1"
     }
-  ]
-}
+  },
+  {
+    "name": "alias2",
+    "command": {
+      "hostname": "192.168.0.1",
+      "port": 3000,
+      "region": "us-east-1",
+      "profile": "profile2"
+    }
+  }
+]
 ```
 
 You can create a file like the above and use it to bulk add aliases.
