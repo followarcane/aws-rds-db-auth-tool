@@ -2,10 +2,6 @@
 
 AWS RDS DB Auth Tool make it easier for you to generate and manage your authentication tokens for your AWS RDS databases.
 
-## What does it do?
-
-Think of it as a password manager for your databases in AWS RDS! You can add the details of your databases to this tool by creating an "alias" for each one (more on this later), and then use it to generate an authentication token whenever you want to connect to a relevant database. 
-
 ## How to use it?
 
 Make sure you have everything you need:
