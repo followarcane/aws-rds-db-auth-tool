@@ -9,13 +9,13 @@ import botocore.exceptions
 
 def get_username():
     config = configparser.ConfigParser()
-    if not os.path.exists('settings.ini'):
+    config.read('settings.ini')
+    if 'username' not in config['DEFAULT']: 
         username_input = input(colored('Please enter your username: ', 'magenta'))
         config['DEFAULT'] = {'username': username_input}
         with open('settings.ini', 'w') as configfile:
             config.write(configfile)
-    
-    config.read('settings.ini')
+        return username_input
     return config['DEFAULT']['username']
 
 
@@ -37,13 +37,13 @@ def main():
         alias_commands = get_aliases_from_file()
 
         for index, alias_command in enumerate(alias_commands, start=1):
-            print(colored(f"{index}- {alias_command['name']}", 'cyan'))
+            print(colored(f"{index}- {alias_command['name']}", 'yellow'))
 
-        choice = input(colored("Please choose a number from the list: ", 'magenta'))
+        choice = input(colored("Please choose a number from the list: ", 'yellow'))
         selected_settings = alias_commands[int(choice) - 1]['command']
         password = get_db_password_with_boto3(username, **selected_settings)
         pyperclip.copy(password)
-        print(colored("Password has been stored in the clipboard for security. You can access it by pasting (CTRL+V or CMD+V).", 'yellow'))
+        print(colored("Password has been stored in the clipboard for security. You can access it by pasting (CTRL+V or CMD+V).", 'green'))
 
     except IndexError:
         print(colored('Error: Invalid choice. Please enter a number corresponding to the list of aliases.', 'red'))
