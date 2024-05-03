@@ -18,9 +18,9 @@ Make sure you have everything you need:
 
 Once you have everything set up, navigate into the project folder where you cloned our repository. Open up your terminal, or command prompt if you're on Windows, and type the following command to install the necessary packages:
 
-\`\`\`bash
+```bash
 pip3 install -r requirements.txt
-\`\`\`
+```
 
 Now, you're set to start using AWS RDS DB Auth Tool!
 
@@ -28,9 +28,9 @@ Now, you're set to start using AWS RDS DB Auth Tool!
 
 Firstly, you'll need to store your database details. We use the term "alias" for this. You can add a new alias by running the following command:
 
-\`\`\`bash
+```bash
 python3 add_db_alias.py
-\`\`\`
+```
 
 You'll be asked a series of questions to fill out your database information. You can repeat this process to add multiple aliases.
 
@@ -38,9 +38,9 @@ You'll be asked a series of questions to fill out your database information. You
 
 Once you have your aliases set up, you can generate an authentication token which you can use to connect to your database:
 
-\`\`\`bash
+```bash
 python3 get_db_password.py
-\`\`\`
+```
 
 You'll be asked to pick the alias for which you wish to generate the token. Your token will be copied to your clipboard, ready to be pasted wherever you need it!
 
@@ -48,7 +48,7 @@ You'll be asked to pick the alias for which you wish to generate the token. Your
 
 If you have a bulk list of aliases in JSON format, they can be added via the provided Python script. Here's an example of how the JSON format should appear:
 
-\`\`\`json
+```json
 {
   "aliases": [
     {
@@ -63,7 +63,7 @@ If you have a bulk list of aliases in JSON format, they can be added via the pro
     }
   ]
 }
-\`\`\`
+```
 
 You can create a file like the above and use it to bulk add aliases.
 
