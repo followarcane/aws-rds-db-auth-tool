@@ -1,19 +1,29 @@
-from termcolor import colored
-import pyperclip
-import configparser
-import os
 import boto3
-import json
 import botocore.exceptions
+import configparser
+import json
+import os
+import pyperclip
+from termcolor import colored
 
+
+def get_base_dir():
+    return os.path.dirname(os.path.abspath(__file__))
+
+
+def get_aliases_from_file():
+    filepath = os.path.join(get_base_dir(), 'aliases.json')
+    with open(filepath, 'r') as f:
+        return json.load(f)
 
 def get_username():
+    filepath = os.path.join(get_base_dir(), 'settings.ini')
     config = configparser.ConfigParser()
-    config.read('settings.ini')
+    config.read(filepath)
     if 'username' not in config['DEFAULT']: 
         username_input = input(colored('Please enter your username: ', 'magenta'))
         config['DEFAULT'] = {'username': username_input}
-        with open('settings.ini', 'w') as configfile:
+        with open(filepath, 'w') as configfile:
             config.write(configfile)
         return username_input
     return config['DEFAULT']['username']
@@ -24,11 +34,6 @@ def get_db_password_with_boto3(username, hostname, port, region, profile):
     client = session.client('rds')
     password = client.generate_db_auth_token(DBHostname=hostname, Port=port, DBUsername=username, Region=region)
     return password
-
-
-def get_aliases_from_file():
-    with open('aliases.json', 'r') as f:
-        return json.load(f)
 
 
 def main():
